@@ -15,6 +15,7 @@ gunicorn = "*"
 python-dotenv = "*"
 dj-database-url = "*"
 whitenoise = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
