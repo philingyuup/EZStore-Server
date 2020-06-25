@@ -6,7 +6,7 @@ from .models.product import Product
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
-    list_display = ['id', 'email', 'is_superuser', 'last_login']
+    list_display = ['id', 'email', 'is_superuser', 'is_staff', 'last_login']
     # The fieldsets are used when you edit a new user via the admin site.
     # fieldsets is a list in the form of two tuples, where each pair represents an
     # html <fieldset> on the admin page.  The tuples are in the format:

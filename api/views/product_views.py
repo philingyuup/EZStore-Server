@@ -15,7 +15,7 @@ class Products(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
     def get(self, request):
         if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not own this product')
+            raise PermissionDenied('Unauthorized, you do not work here!')
         """Index request"""
         # products = Product.objects.all()
         products = Product.objects.filter(owner=request.user.id)
@@ -26,7 +26,7 @@ class Products(generics.ListCreateAPIView):
     def post(self, request):
         """Create request"""
         if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not own this product')
+            raise PermissionDenied('Unauthorized, you do not work here!')
         # Add user to request object
         request.data['product']['owner'] = request.user.id
         # Serialize/create product
@@ -45,14 +45,14 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         data = ProductSerializer(product).data
         # Only want to show owned products?
         if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not own this product')
+            raise PermissionDenied('Unauthorized, you do not work here!')
         return Response(data)
 
     def delete(self, request, pk):
         """Delete request"""
         product = get_object_or_404(Product, pk=pk)
         if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not own this product')
+            raise PermissionDenied('Unauthorized, you do not work here!')
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -66,7 +66,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         product = get_object_or_404(Product, pk=pk)
         # Check if user is  the same
         if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not own this product')
+            raise PermissionDenied('Unauthorized, you do not work here!')
 
         # Add owner to data object now that we know this user owns the resource
         request.data['product']['owner'] = request.user.id
