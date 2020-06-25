@@ -1,2 +1,2 @@
-from .mango import Mango
+from .product import Product
 from .user import User
