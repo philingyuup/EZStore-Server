@@ -7,10 +7,10 @@ class Product(models.Model):
   # define fields
   # https://docs.djangoproject.com/en/3.0/ref/models/fields/
   name = models.CharField(max_length=100)
-  img = models.TextField()
-  short_description = models.TextField()
+  img = models.TextField(blank=True)
+  short_description = models.TextField(blank=True)
   long_description = models.TextField(blank=True)
-  price = models.DecimalField(..., max_digits=9, decimal_places=2, null=True)
+  price = models.DecimalField(max_digits=9, decimal_places=2, default=0)
   owner = models.ForeignKey(
       User,
       on_delete=models.CASCADE

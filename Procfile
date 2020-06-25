@@ -1,2 +1,2 @@
 web: gunicorn EZStore-Server.wsgi
-release: winpty python manage.py migrate
+release: python manage.py migrate

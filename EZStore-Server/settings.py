@@ -26,6 +26,8 @@ if os.getenv('ENV') == 'development':
   DB = {
       'ENGINE': 'django.db.backends.postgresql',
       'NAME': DB_NAME,
+      'USER': 'postgres',
+      'PASSWORD': 'password',
   }
   DEBUG = True
   CORS_ORIGIN_WHITELIST = ['http://localhost:7165']
@@ -99,7 +101,7 @@ WSGI_APPLICATION = 'EZStore-Server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-    'default': DB
+    'default': DB,
 }
 
 # DRF
