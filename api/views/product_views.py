@@ -14,6 +14,8 @@ from ..serializers import ProductSerializer, UserSerializer
 class Products(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
     def get(self, request):
+        if not request.user.is_staff:
+            raise PermissionDenied('Unauthorized, you do not own this product')
         """Index request"""
         # products = Product.objects.all()
         products = Product.objects.filter(owner=request.user.id)
@@ -23,6 +25,8 @@ class Products(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     def post(self, request):
         """Create request"""
+        if not request.user.is_staff:
+            raise PermissionDenied('Unauthorized, you do not own this product')
         # Add user to request object
         request.data['product']['owner'] = request.user.id
         # Serialize/create product
@@ -40,14 +44,14 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         product = get_object_or_404(Product, pk=pk)
         data = ProductSerializer(product).data
         # Only want to show owned products?
-        # if not request.user.id == data['owner']:
-        #     raise PermissionDenied('Unauthorized, you do not own this product')
+        if not request.user.is_staff:
+            raise PermissionDenied('Unauthorized, you do not own this product')
         return Response(data)
 
     def delete(self, request, pk):
         """Delete request"""
         product = get_object_or_404(Product, pk=pk)
-        if not request.user.id == product['owner']:
+        if not request.user.is_staff:
             raise PermissionDenied('Unauthorized, you do not own this product')
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -61,7 +65,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         # Locate Product
         product = get_object_or_404(Product, pk=pk)
         # Check if user is  the same
-        if not request.user.id == product['owner']:
+        if not request.user.is_staff:
             raise PermissionDenied('Unauthorized, you do not own this product')
 
         # Add owner to data object now that we know this user owns the resource
