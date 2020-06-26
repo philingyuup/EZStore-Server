@@ -12,14 +12,15 @@ from ..serializers import ProductSerializer, UserSerializer
 
 # Create your views here.
 class Products(generics.ListCreateAPIView):
-    permission_classes=(IsAuthenticated,)
+
     def get(self, request):
         """Index request"""
-        # products = Product.objects.all()
-        products = Product.objects.filter(owner=request.user.id)
+        products = Product.objects.all()
+        # products = Product.objects.filter(owner=request.user.id)
         data = ProductSerializer(products, many=True).data
         return Response(data)
 
+    permission_classes=(IsAuthenticatedOrReadOnly,)
     serializer_class = ProductSerializer
     def post(self, request):
         """Create request"""
@@ -36,7 +37,7 @@ class Products(generics.ListCreateAPIView):
             return Response(product.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes=(IsAuthenticated,)
+
     def get(self, request, pk):
         """Show request"""
         product = get_object_or_404(Product, pk=pk)
@@ -44,6 +45,7 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         # Only want to show owned products?
         return Response(data)
 
+    permission_classes=(IsAuthenticatedOrReadOnly,)
     def delete(self, request, pk):
         """Delete request"""
         product = get_object_or_404(Product, pk=pk)
