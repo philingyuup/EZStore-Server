@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import sys
 import dj_database_url
-import django_heroku
+# import django_heroku
 
 # .env config:
 from dotenv import load_dotenv, find_dotenv
@@ -37,7 +37,7 @@ else:
   DEBUG = False
   CORS_ORIGIN_WHITELIST = [
     os.getenv('CLIENT_ORIGIN'),
-    'https://philingyuup.github.io'
+    'https://philingyuup.github.io/'
   ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -76,8 +76,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # Eron added suspect backend
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    )
 
 ROOT_URLCONF = 'EZStore-Server.urls'
 
@@ -159,4 +166,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 AUTH_USER_MODEL = 'api.User'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
