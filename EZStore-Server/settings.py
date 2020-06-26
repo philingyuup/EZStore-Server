@@ -36,7 +36,8 @@ else:
   DB = dj_database_url.config()
   DEBUG = False
   CORS_ORIGIN_WHITELIST = [
-    os.getenv('CLIENT_ORIGIN')
+    os.getenv('CLIENT_ORIGIN'),
+    'https://philingyuup.github.io'
   ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
