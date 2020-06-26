@@ -37,7 +37,8 @@ else:
   DEBUG = False
   CORS_ORIGIN_WHITELIST = [
     os.getenv('CLIENT_ORIGIN'),
-    'https://philingyuup.github.io/'
+    'https://philingyuup.github.io/',
+    '*',
   ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -77,14 +78,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Eron added suspect backend
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-MIDDLEWARE_CLASSES = (
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    )
+# MIDDLEWARE_CLASSES = (
+#     # Simplified static file serving.
+#     # https://warehouse.python.org/project/whitenoise/
+#     'whitenoise.middleware.WhiteNoiseMiddleware',
+#     )
 
 ROOT_URLCONF = 'EZStore-Server.urls'
 
