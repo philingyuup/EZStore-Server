@@ -14,8 +14,6 @@ from ..serializers import ProductSerializer, UserSerializer
 class Products(generics.ListCreateAPIView):
     permission_classes=(IsAuthenticated,)
     def get(self, request):
-        if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not work here!')
         """Index request"""
         # products = Product.objects.all()
         products = Product.objects.filter(owner=request.user.id)
@@ -44,8 +42,6 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
         product = get_object_or_404(Product, pk=pk)
         data = ProductSerializer(product).data
         # Only want to show owned products?
-        if not request.user.is_staff:
-            raise PermissionDenied('Unauthorized, you do not work here!')
         return Response(data)
 
     def delete(self, request, pk):
