@@ -111,7 +111,7 @@ These are the data format for the API calls
         "img": <imageUrl>,
         "short_description": <text>,
         "long_description": <text>,
-        "price": <float w/ two decimals>
+        "price": <floatWithTwoDecimals>
     }
 }
 ```
@@ -124,7 +124,7 @@ These are the data format for the API calls
         "img": <imageUrl>,
         "short_description": <text>,
         "long_description": <text>,
-        "price": <float w/ two decimals>
+        "price": <floatWithTwoDecimals>
     }
 }
 // Partial updates are enabled so if you don't want to update a certain key, just
@@ -134,7 +134,7 @@ These are the data format for the API calls
     "product": {
         "long_description": <text>,
         "img": <imageUrl>,
-        "price": <two decimal float>
+        "price": <floatWithTwoDecimals>
     }
 }
 ```
