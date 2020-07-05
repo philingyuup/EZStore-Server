@@ -31,16 +31,16 @@ if os.getenv('ENV') == 'development':
       'PASSWORD': 'password',
   }
   DEBUG = True
-  CORS_ORIGIN_WHITELIST = [ os.getenv('CLIENT_ORIGIN'),
-'http://localhost:7165']
+  # CORS_ORIGIN_WHITELIST = [ os.getenv('CLIENT_ORIGIN'), 'http://localhost:7165', ]
+  CORS_ORIGIN_WHITELIST = [ 'http://localhost:7165', ]
 else:
   DB = dj_database_url.config()
   DEBUG = False
-  # CORS_ORIGIN_WHITELIST = [
-  #   os.getenv('CLIENT_ORIGIN'),
-  #   'https://philingyuup.github.io/',
-  #   '*',
-  # ]
+  CORS_ORIGIN_WHITELIST = [
+    os.getenv('CLIENT_ORIGIN'),
+    'https://philingyuup.github.io/',
+    '*',
+  ]
   CORS_ORIGIN_ALLOW_ALL=True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -71,9 +71,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
