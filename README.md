@@ -147,7 +147,7 @@ These are the data format for the API calls
 Please note that both actions are POST requests
 
 | PURPOSE | URL | VERB | RETURN OBJECT |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | Upload | see above | 'POST' | Cloudinary Object |
 | Delete (conditional, see below) | see above | 'POST' | None |
 
