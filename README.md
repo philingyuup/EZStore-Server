@@ -134,12 +134,13 @@ These are the data format for the API calls
     "product": {
         "long_description": <text>,
         "img": <imageUrl>,
-        "price": <float w/ two decimals>
+        "price": <two decimal float>
     }
 }
 ```
 
 **CLOUDINARY**
+
 *NOTE*: Due to this being an unsigned preset, I won't be sharing the exact url with you.
 
 > URL='https://api.cloudinary.com/v1_1/exampleCloudName/image/upload'
