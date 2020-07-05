@@ -1,10 +1,10 @@
 # EZStore-Server
 
 ##  Links
-[Client App](https://philingyuup.github.io/EZStore-Client/)
-[Client Repo](https://github.com/philingyuup/EZStore-Client)
-[API App](https://ezstore-server.herokuapp.com/)
-[API Repo](https://github.com/philingyuup/EZStore-Server)
+- [Client App](https://philingyuup.github.io/EZStore-Client/)
+- [Client Repo](https://github.com/philingyuup/EZStore-Client)
+- [API App](https://ezstore-server.herokuapp.com/)
+- [API Repo](https://github.com/philingyuup/EZStore-Server)
 
 ## Intro
 EZStore is an e-commerce store that is customizable through admin abilities given to owners or staff members of the store. EZStore-Server is a RESTful API built using Python, PostgresQL, and Django's REST framework. Below you'll find more information about the server as well as information on how to communicate with it.
@@ -141,11 +141,15 @@ These are the data format for the API calls
 
 **CLOUDINARY**
 *NOTE*: Due to this being an unsigned preset, I won't be sharing the exact url with you.
+
 > URL='https://api.cloudinary.com/v1_1/exampleCloudName/image/upload'
+
+Please note that both actions are POST requests
+
 | PURPOSE | URL | VERB | RETURN OBJECT |
 | --- | --- | --- | --- | --- |
 | Upload | see above | 'POST' | Cloudinary Object |
-| Delete (conditional, see below) | see above | 'POST' | NONE |
+| Delete (conditional, see below) | see above | 'POST' | None |
 
 These are the data format for the api call
 
@@ -155,9 +159,9 @@ These are the data format for the api call
   'file': <event.target.files[0]>,
   'upload_preset': 'ezstore'
 }
-// Remember that event.target.files is an array and unsigned html upload through Cloudinary
-// only allows single file uploads.
-// The secure_url is what we add to the 'img' key in our Product objects.
+// Remember that event.target.files is an array and unsigned html upload through
+// Cloudinary only allows single file uploads.
+// The secure_url is the value to the 'img' key in our Product object.
 ```
 
 *DELETE*
@@ -167,5 +171,5 @@ These are the data format for the api call
 }
 // Upon a successful upload, a delete_token will be in the response object. Cloudinary
 // allows unsigned html deletion on files that have just been recently updated. The
-// delete_token is only valid for 10 minutes upon a successful upload. 
+// delete_token is only valid for 10 minutes upon a successful upload.
 ```
