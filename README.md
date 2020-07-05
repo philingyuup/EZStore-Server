@@ -10,7 +10,7 @@
 EZStore is an e-commerce store that is customizable through admin abilities given to owners or staff members of the store. EZStore-Server is a RESTful API built using Python, PostgresQL, and Django's REST framework. Below you'll find more information about the server as well as information on how to communicate with it.
 
 ## How to use API
-Instructions for how to use the API is listed below this README file in the **Instructions** portion. You'll find information on how to access the ```users```, ```products```, and cloudinary routes.
+Instructions for how to use the API is listed below this README file in the **Instructions** portion. If you decide to fork and mess around with the repo, please do ```pipenv shell``` then ```pipenv install``` to set up dependencies. To run the server, it's ```python3 manage.py runserver``` for UNIX and ```winpty python manage.py runserver``` for Windows user (note: you'll find more information down below about ```winpty``` in the 'Issues Encountered' section of this README). You'll find information on how to access the ```users```, ```products```, and cloudinary routes.
 
 ## Planning Story
 I wanted to make an e-commerce store that gives admin abilities for the owner and staff members of the site. The admin abilities include being able to edit the store, choose different templates/layouts, and upload products. Customers are also able to login and perform actions as a repeated customer (saved mailing address and credit cards). For the MVP, it'll just be the ability to CRUD products onto the page (as a staff member of the ecommerce store). Regular users (customers) won't be able to access the Admin page and only has read-only access to the server.
